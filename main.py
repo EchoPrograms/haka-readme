@@ -374,8 +374,9 @@ def fetch_stats():
     logger.debug(f"Pulling WakaTime stats from {' '.join(wk_i.time_range.split('_'))}")
     
     while attempts > 0:
-        resp_message, fake_ua = "", cryptogenic.choice([str(fake.user_agent()) for _ in range(5)])
         logger.debug(f"{str(wk_i.api_base_url).rstrip('/')}/v1/users/current/stats/{wk_i.time_range}")
+        resp_message, fake_ua = "", cryptogenic.choice([str(fake.user_agent()) for _ in range(5)])
+       
         # making a request
         if (
             resp := rq_get(
